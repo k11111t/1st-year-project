@@ -1,0 +1,137 @@
+/* Background colour and base styles for every single page */
+html, body{
+  background: linear-gradient(90deg, rgba(15,48,12,1) 0%, rgba(36,111,29,1) 20%, rgba(36,111,29,1) 80%, rgba(15,48,12,1) 100%);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  text-align: center;
+  color: white;
+  padding: 0;
+  margin: 0;
+  }
+/* hyperlink styles */
+a:link{
+  color: #e3a509;
+}
+
+a:visited{
+  color: #e3a509;
+}
+
+a:hover{
+  color: gray;
+}
+
+/*Button style*/
+button{
+  background-color: #e3a509;
+  border: none;
+  color: white;
+  font-weight: bold;
+  font-size: 25px;
+  text-align: center;
+  border-radius: 5px;
+  padding: 5px 10px;
+  transition-duration: 0.4s;
+}
+
+button:hover{
+  transition-duration: 0.4s;
+  background-color: #f8c954;
+}
+
+/* styles applied to input boxes */
+input{
+  border: 3px solid white;
+  padding: 5px 6px;
+  margin-bottom: 2px;
+  transition-duration: 0.4s;
+}
+
+input:focus{
+  transition-duration: 0.4s;
+  border-color: #e3a509;
+}
+
+.error{
+  border-color: red;
+}
+
+/* Used to align the login and register pages centrally */
+.center {
+  display: inline;
+  /*margin-left: auto;*/
+  /*margin-right: auto;*/
+}
+
+/* Style elements for the yellow box around all of the main text boxes on every page. V IMPORTANT*/
+.basicBorder{
+  margin: auto;
+  margin-top: 15px;
+  border: 3px groove #e3a509;
+  border-radius: 5px;
+  background: #1F5B18;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  min-width: 500px;
+  display: inline-block;
+}
+
+.errorBorder {
+  border: 3px groove red;
+}
+
+/*Used to get input data from login and register pages */
+.tableForm{
+  text-align: center;
+  display: inline;
+
+}
+
+.tableForm td {
+  padding-right: 10px;
+}
+
+.tableIndex {
+  font-weight: bold;
+}
+/* Styles for the logo on the register and login page*/
+.entryPageLogo
+{
+  width: 300px;
+  display: inline;
+
+}
+/*Styles to make text red */
+.importantText{
+  font-weight: bold;
+  display: inline;
+  color: red;
+}
+
+/*Text after importantText to make it on the same line */
+.text{
+  display:inline;
+}
+
+.titleText {
+  margin: 0px;
+  font-size: 50px;
+  font-weight: bolder;
+}
+
+.subtitleText {
+  font-size: 32px;
+  padding-bottom: 25px;
+}
+
+/*Style to put multiple buttons on the same line*/
+.buttonSameLine
+{
+  display: flex;
+  justify-content: space-around;
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}

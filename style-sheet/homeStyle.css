@@ -1,0 +1,74 @@
+.flip-box {
+  background-color: transparent;
+  width: 270px;
+  height: 378px;
+  border: none;
+  perspective: 1000px;
+  float: left;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.flip-box-inner {
+  position: relative;
+  width: 270px;
+  height: 378px;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.flip-box:hover .flip-box-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-box-front, .flip-box-back {
+  position: absolute;
+  width: 270px;
+  height: 378px;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  /* font-size: 14px; */
+}
+
+.flip-box-front {
+  border-radius: 15px;
+  background-color: transparent;
+  color: black;
+}
+
+.cardFront{
+  border-radius: 15px;
+  width: auto;
+  height: 378px;
+}
+
+.flip-box-back {
+  border-radius: 15px;
+  color: white;
+  transform: rotateY(180deg);
+}
+
+.red {
+  background: #A00000;
+}
+
+.blue {
+  background: #0028A0;
+}
+
+.black {
+  background: #303030;
+}
+
+table {
+  background-color: #1C5116;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+table, th, td {
+  border: 3px groove #e3a509;
+  padding: 10px;
+}
