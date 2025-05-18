@@ -1,7 +1,7 @@
 <?php
-$servername = 'dbhost.cs.man.ac.uk';
-$databaseusername = 'h21817ja';
-$databasepassword = 'dbp455wrd';
+$servername = 'localhost';
+$databaseusername = 'root';
+$databasepassword = '';
 $database = '2019_comp10120_y8';
 
 // connection
@@ -135,7 +135,7 @@ if ($_POST) {
 
           			if (mysqli_query($connect, $InsertUser) == TRUE){
                   mysqli_query($connect, $InsertBank);
-                  mysqli_query($connect, $InsertInventory);
+                  //mysqli_query($connect, $InsertInventory);
 
                   mysqli_query($connect, $InsertInventoryDefaultCard);
                   mysqli_query($connect, $InsertInventoryDefaultColour);

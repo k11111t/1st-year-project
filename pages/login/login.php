@@ -17,11 +17,11 @@
         <table class="tableForm">
           <tr>
             <td class="tableIndex">Username:</td>
-            <td><input type="text" name="username" class="<?php if($_GET["errorID"] == 1) echo "error"?>"><br></td>
+            <td><input type="text" name="username" class="<?php if(isset($_GET["errorID"]) && $_GET["errorID"] == 1) echo "error"?>"><br></td>
           </tr>
           <tr>
             <td class="tableIndex">Password:</td>
-            <td><input type="password" name="password" class="<?php if($_GET["errorID"] == 1) echo "error"?>"><br></td>
+            <td><input type="password" name="password" class="<?php if(isset($_GET["errorID"]) && $_GET["errorID"] == 1) echo "error"?>"><br></td>
           </tr>
         </table>
         <br><br>

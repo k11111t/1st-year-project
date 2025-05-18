@@ -23,6 +23,67 @@
         $("#nav-placeholder").load("../page-assets/navbar.php");
       });
     </script>
+    <script type="text/javascript">
+      //const ws = new WebSocket("ws://10.2.232.171:3000");
+      const ws = new WebSocket("ws://localhost:3000");
+
+      function func() {}
+
+      ws.onopen = () => func();
+      ws.onclose = () => func();
+
+      function createRoom() {
+          console.log("this works1");
+          <?php 
+              $getMinMaxPlayers = "SELECT maxplayers, minplayers FROM gamemode WHERE gameID=1";
+              $result = mysqli_query($connect, $getMinMaxPlayers);
+              $row = mysqli_fetch_assoc($result);
+              $maxPlayers = $row['maxplayers'];
+              $minPlayers = $row['minplayers'];
+          ?>
+
+          msg = {
+            type: "createRoom",
+            responseLevel: 1,
+            roomUsername: "<?php echo $username?>",
+            gameType: "BlackJack",
+            maxNoPlayers: <?php echo $maxPlayers; ?>,
+            minNoPlayers: <?php echo $minPlayers; ?>
+          }
+
+          ws.send(JSON.stringify(msg));
+        }
+
+      function joinRoom (userNameToJoin) {
+          msg = {
+            type: "joinRoom",
+            responseLevel: 1,
+            roomUsername: userNameToJoin,
+            username: "<?php echo $username?>",
+          }
+
+          ws.send(JSON.stringify(msg));
+      }
+
+      ws.onmessage = function (response) {
+         var msg = JSON.parse(response.data);
+         switch (msg.type) {
+            case "createRoomResponse":
+            	console.log(4);
+            	var hostUsername = msg.roomUsername;
+            	console.log(hostUsername);
+            	document.getElementById("hostname").value = hostUsername;
+            	//console.log(document.getElementById("hostname").value);
+            	document.getElementById("createRoomForm").submit();
+            	break;
+            case "joinRoomResponse":
+        	     console.log("recieved");
+               var hostUsername = msg.roomUsername;
+               document.getElementById("roomUsername").value = hostUsername;
+               document.getElementById("joinRoomForm").submit();
+         }
+      }
+    </script>
 
     <form action="host_interface.php" method="post" id="createRoomForm">
 		  <input id="hostname" name="hostname" hidden></input>
@@ -45,18 +106,23 @@
               <img src="../page-assets/cards/backs/blueCard.png" alt="blackjack" class = "cardFront">  <!-- display the front face as an image of 2 cards -->
             </div>
             <div class="flip-box-back blue">  <!-- class used for showing the users stats for that game and letting them create a room in that ga,m -->
-              <h2><?php echo $g1Name?></h2>
-              <p class="text"><?php echo $g1Desc?><br>
-                <br>
-                Max Players: <?php echo $g1MaxP?> <br>
-                Min Players: <?php echo $g1MinP?> <br>
-                <br>
-                Games played: <?php echo $g1GamesPlayed?> <br>
-                Games won: <?php echo $g1GamesWon?> <br>
-                Games lost: <?php echo $g1GamesLost?> <br>
-                Current win streak: <?php echo $g1WinStreak?></p>
-              <br><br>
-              <button onclick="createRoom()">Create Room</button>
+              <h2 class="header"><?php echo $g1Name?></h2>
+              <div class="description">
+                <?php echo $g1Desc?>
+              </div>
+              <p class="text">
+                <div class="sub-text">
+                  Max Players: <?php echo $g1MaxP?> <br>
+                  Min Players: <?php echo $g1MinP?> <br>
+                </div>
+                <div class="sub-text">
+                  Games played: <?php echo $g1GamesPlayed?> <br>
+                  Games won: <?php echo $g1GamesWon?> <br>
+                  Games lost: <?php echo $g1GamesLost?> <br>
+                  Current win streak: <?php echo $g1WinStreak?><br>
+                </div>
+                </p>
+              <button onclick="createRoom()" class="button">Create Room</button>
             </div>
           </div>
         </div>
@@ -139,61 +205,6 @@
           }
           ?>
     </div>
-    <script type="text/javascript">
-      const ws = new WebSocket("ws://10.2.232.171:3000");
-      //const ws = new WebSocket("ws://localhost:3000");
-
-      function func() {}
-
-      ws.onopen = () => func();
-      ws.onclose = () => func();
-
-      function createRoom() {
-        //console.log("this works1");
-          msg = {
-            type: "createRoom",
-            responseLevel: 1,
-            roomUsername: "<?php echo $username?>",
-            gameType: "BlackJack",
-             <?php $getMinMaxPlayers = "SELECT maxplayers, minplayers FROM gamemode WHERE gameID=1";
-      		      $result = mysqli_query($connect, $getMinMaxPlayers);
-      		      $row = mysqli_fetch_assoc($result);
-      		      echo'maxNoPlayers: '.$row['maxplayers'].',';
-      		      echo'minNoPlayers: '.$row['minplayers'];?>
-          }
-
-          ws.send(JSON.stringify(msg));
-        }
-
-      function joinRoom (userNameToJoin) {
-          msg = {
-            type: "joinRoom",
-            responseLevel: 1,
-            roomUsername: userNameToJoin,
-            username: "<?php echo $username?>",
-          }
-
-          ws.send(JSON.stringify(msg));
-      }
-
-      ws.onmessage = function (response) {
-         var msg = JSON.parse(response.data);
-         switch (msg.type) {
-            case "createRoomResponse":
-            	console.log(4);
-            	var hostUsername = msg.roomUsername;
-            	console.log(hostUsername);
-            	document.getElementById("hostname").value = hostUsername;
-            	//console.log(document.getElementById("hostname").value);
-            	document.getElementById("createRoomForm").submit();
-            	break;
-            case "joinRoomResponse":
-        	     console.log("recieved");
-               var hostUsername = msg.roomUsername;
-               document.getElementById("roomUsername").value = hostUsername;
-               document.getElementById("joinRoomForm").submit();
-         }
-      }
-    </script>
+    
   </body>
 </html>

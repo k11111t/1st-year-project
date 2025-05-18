@@ -4,8 +4,8 @@ const messages = document.getElementById("messages");
 const form = document.getElementById("form");
 const input = document.getElementById("input");
 
-const ws = new WebSocket("ws://10.2.232.171:3000");
-//const ws = new WebSocket("ws://localhost:3000");
+//const ws = new WebSocket("ws://10.2.232.171:3000");
+const ws = new WebSocket("ws://localhost:3000");
 
 
 //global vars save info about user

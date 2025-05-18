@@ -5,9 +5,9 @@
   $surname = "N/A";
 
   if (isset($_SESSION['username'])) {
-    $servername = 'dbhost.cs.man.ac.uk';
-    $databaseusername = 'h21817ja';
-    $databasepassword = 'dbp455wrd';
+    $servername = 'localhost';
+    $databaseusername = 'root';
+    $databasepassword = '';
     $database = '2019_comp10120_y8';
 
     // connection
