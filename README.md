@@ -1,5 +1,5 @@
 # Decked Out
-First year team project in collaboration with other 5 people
+First year team project in collaboration with other 5 people <br>
 Decked Out - a web application that simulates playing Blackjack, where a user can play with other people.
  
 ## Tech stack:
